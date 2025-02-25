@@ -245,6 +245,14 @@
 			    <Image condition="begin with">C:\Program Files (x86)\</Image>
 			    <Image condition="contains any">NinjaRMMAgent.exe,NinjaRMMAgentPatcher.exe</Image>
 			</Rule>
+			<Rule groupRelation="and">
+			    <ParentImage condition="begin with">C:\Program Files (x86)\</ParentImage>
+			    <ParentImage condition="contains any">NinjaRMMAgent.exe,NinjaRMMAgentPatcher.exe</ParentImage>
+			</Rule>			
+			<Rule groupRelation="and">
+			    <SourceImage condition="begin with">C:\Program Files (x86)\</SourceImage>
+			    <SourceImage condition="contains any">NinjaRMMAgent.exe,NinjaRMMAgentPatcher.exe</SourceImage>
+			</Rule>
 			<!-- SECTION: Huntress Agent -->
 				<!-- Main Agent Executables -->
 				<Image condition="is">C:\Program Files\Huntress\HuntressAgent.exe</Image>
@@ -563,6 +571,10 @@
 			<SourceImage condition="is">C:\Program Files\Aurora-Agent\aurora-agent.exe</SourceImage>
 			<SourceImage condition="is">C:\Program Files\Aurora-Agent\aurora-agent-64.exe</SourceImage>
 			<SourceImage condition="is">C:\Program Files\Huntress\HuntressAgent.exe</SourceImage>
+			<Rule groupRelation="and">
+			    <SourceImage condition="begin with">C:\Program Files (x86)\</SourceImage>
+			    <SourceImage condition="contains any">NinjaRMMAgent.exe,NinjaRMMAgentPatcher.exe</SourceImage>
+			</Rule>
 		</ProcessAccess>
 	</RuleGroup>
 
@@ -1434,7 +1446,7 @@
 		<!--DATA: RuleName, UtcTime, ProcessGuid, ProcessId, User, Image, TargetFilename, Hashes, IsExecutable -->
 
 	<RuleGroup name="" groupRelation="or">
-		<FileDelete onmatch="include">
+		<FileDeleteDetected onmatch="include">
 			<!-- Track deletions of script and executable file types -->
 			<TargetFilename condition="contains">.ps1</TargetFilename>
 			<TargetFilename condition="contains">.bat</TargetFilename>
@@ -1466,9 +1478,9 @@
 			<Image condition="contains">cmd.exe</Image>
 			<Image condition="contains">wscript.exe</Image>
 			<Image condition="contains">cscript.exe</Image>
-		</FileDelete>
+		</FileDeleteDetected>
 
-		<FileDelete onmatch="exclude">
+		<FileDeleteDetected onmatch="exclude">
 			<!-- Exclude common high-volume paths to reduce noise -->
 			<TargetFilename condition="begin with">C:\Windows\SoftwareDistribution</TargetFilename>
 			<TargetFilename condition="begin with">C:\Windows\Temp</TargetFilename>
@@ -1476,7 +1488,9 @@
 			<TargetFilename condition="contains">AppData\Local\Temp</TargetFilename>
 			<TargetFilename condition="contains">AppData\Local\Microsoft\Windows\INetCache</TargetFilename>
 			<TargetFilename condition="contains">AppData\Local\Microsoft\Windows\Temporary Internet Files</TargetFilename>
-		</FileDelete>
+			<TargetFilename condition="begin with">C:\Windows\SystemTemp\</TargetFilename>
+			<TargetFilename condition="begin with">C:\Windows\Prefetch\</TargetFilename>
+		</FileDeleteDetected>
 	</RuleGroup>
 		
 	<!--SYSMON EVENT ID 27 : FILE BLOCK [FileBlockExecutable]-->
