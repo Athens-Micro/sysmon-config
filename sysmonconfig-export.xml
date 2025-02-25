@@ -234,6 +234,8 @@
 			<Image condition="begin with">C:\Program Files\Microsoft Monitoring Agent\</Image>
 			<ParentImage condition="is">C:\Program Files\Microsoft Monitoring Agent\MonitoringHost.exe</ParentImage>
 			<ParentImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</ParentImage>
+			<!-- SECTION: PowerAutomate-->
+			<Image condition="is">C:\Program Files (x86)\Power Automate Desktop\PAD.BrowserNativeMessageHost.exe</Image>
 			<!-- SECTION: NinjaOne -->
 			<Image condition="begin with">C:\ProgramData\NinjaRMMAgent\</Image>
 			<ParentImage condition="is">C:\ProgramData\NinjaRMMAgent\ninjarmm-cli.exe</ParentImage>
@@ -244,23 +246,26 @@
 			    <Image condition="contains any">NinjaRMMAgent.exe,NinjaRMMAgentPatcher.exe</Image>
 			</Rule>
 			<!-- SECTION: Huntress Agent -->
-			<!-- Main Agent Executables -->
-			<Image condition="is">C:\Program Files\Huntress\HuntressAgent.exe</Image>
-			<Image condition="is">C:\Program Files\Huntress\HuntressUpdater.exe</Image>
-			<Image condition="is">C:\Program Files\Huntress\hUpdate.exe</Image>
-			<Image condition="is">C:\Program Files\Huntress\uninstall.exe</Image>			
-			<!-- Rio Component -->
-			<Image condition="is">C:\Program Files\Huntress\Rio\Rio.exe</Image>
-			<Image condition="begin with">C:\Program Files\Huntress\Rio\</Image>			
-			<!-- Broader Exclusions -->
-			<Image condition="begin with">C:\Program Files\Huntress\</Image>			
-			<!-- Parent Process Exclusions -->
-			<ParentImage condition="is">C:\Program Files\Huntress\HuntressAgent.exe</ParentImage>
-			<ParentImage condition="is">C:\Program Files\Huntress\HuntressUpdater.exe</ParentImage>
-			<ParentImage condition="is">C:\Program Files\Huntress\Rio\Rio.exe</ParentImage>			
-			<!-- Command Line Exclusions -->
-			<CommandLine condition="contains">C:\Program Files\Huntress\HuntressUpdater.exe</CommandLine>
-			<CommandLine condition="contains">C:\Program Files\Huntress\hUpdate.exe</CommandLine>
+				<!-- Main Agent Executables -->
+				<Image condition="is">C:\Program Files\Huntress\HuntressAgent.exe</Image>
+				<Image condition="is">C:\Program Files\Huntress\HuntressUpdater.exe</Image>
+				<Image condition="is">C:\Program Files\Huntress\hUpdate.exe</Image>
+				<Image condition="is">C:\Program Files\Huntress\uninstall.exe</Image>			
+				<!-- Rio Component -->
+				<Image condition="is">C:\Program Files\Huntress\Rio\Rio.exe</Image>
+				<Image condition="begin with">C:\Program Files\Huntress\Rio\</Image>			
+				<!-- Broader Exclusions -->
+				<Image condition="begin with">C:\Program Files\Huntress\</Image>			
+				<!-- Parent Process Exclusions -->
+				<ParentImage condition="is">C:\Program Files\Huntress\HuntressAgent.exe</ParentImage>
+				<ParentImage condition="is">C:\Program Files\Huntress\HuntressUpdater.exe</ParentImage>
+				<ParentImage condition="is">C:\Program Files\Huntress\Rio\Rio.exe</ParentImage>			
+				<!-- Command Line Exclusions -->
+				<CommandLine condition="contains">C:\Program Files\Huntress\HuntressUpdater.exe</CommandLine>
+				<CommandLine condition="contains">C:\Program Files\Huntress\hUpdate.exe</CommandLine>
+				<!-- SECTION: Labtech -->
+				<Image condition="is">C:\Windows\LTSvc\LTSvcMon.exe</Image>
+				<image condition="is">C:\Windows\LTSvc\LTSVC.exe</Image>
 		</ProcessCreate>
 	</RuleGroup>
 
@@ -557,6 +562,7 @@
 		<ProcessAccess onmatch="exclude">
 			<SourceImage condition="is">C:\Program Files\Aurora-Agent\aurora-agent.exe</SourceImage>
 			<SourceImage condition="is">C:\Program Files\Aurora-Agent\aurora-agent-64.exe</SourceImage>
+			<SourceImage condition="is">C:\Program Files\Huntress\HuntressAgent.exe</SourceImage>
 		</ProcessAccess>
 	</RuleGroup>
 
@@ -1341,6 +1347,27 @@
 			<QueryName condition="is">status.thawte.com</QueryName>
 			<!-- SECTION: PRTG -->
 			<Image condition="is">C:\Program Files (x86)\PRTG Network Monitor\PRTG Probe.exe</Image>
+			<!-- SECTION: Huntress -->
+			<QueryName condition="endswith">huntress.io</QueryName>
+			<QueryName condition="endswith">huntresscdn.com</QueryName>
+			<QueryName condition="endswith">bugsnag.com</QueryName>
+			<QueryName condition="is">huntress-installers.s3.amazonaws.com</QueryName>
+			<QueryName condition="is">huntress-updates.s3.amazonaws.com</QueryName>
+			<QueryName condition="is">huntress-uploads.s3.us-west-2.amazonaws.com</QueryName>
+			<QueryName condition="is">huntress-user-uploads.s3.amazonaws.com</QueryName>
+			<QueryName condition="is">huntress-rio.s3.amazonaws.com</QueryName>
+			<QueryName condition="is">huntress-survey-results.s3.amazonaws.com</QueryName>
+			<QueryName condition="is">huntress-log-uploads.s3.amazonaws.com</QueryName>
+			<!-- SECTION: NinjaRMM -->
+			<QueryName condition="endswith">ninjarmm.com</QueryName>
+			<QueryName condition="endswith">ninjarmm.net</QueryName>
+			<QueryName condition="endswith">rmmservice.com</QueryName>
+			<QueryName condition="is">ninjauploads.s3.amazonaws.com</QueryName>
+			<QueryName condition="is">resources.ninjarmm.com</QueryName>
+			<QueryName condition="is">ninjabuilds.s3.amazonaws.com</QueryName>
+			<QueryName condition="is">agent-app.ninjarmm.com</QueryName>
+			<QueryName condition="endswith">ingest.sentry.io</QueryName>
+			<QueryName condition="is">ninja-attachments.s3.us-west-2.amazonaws.com</QueryName>
 		</DnsQuery>
 	</RuleGroup>
 
@@ -1405,6 +1432,52 @@
 		-->
 
 		<!--DATA: RuleName, UtcTime, ProcessGuid, ProcessId, User, Image, TargetFilename, Hashes, IsExecutable -->
+
+	<RuleGroup name="" groupRelation="or">
+		<FileDelete onmatch="include">
+			<!-- Track deletions of script and executable file types -->
+			<TargetFilename condition="contains">.ps1</TargetFilename>
+			<TargetFilename condition="contains">.bat</TargetFilename>
+			<TargetFilename condition="contains">.cmd</TargetFilename>
+			<TargetFilename condition="contains">.vbs</TargetFilename>
+			<TargetFilename condition="contains">.hta</TargetFilename>
+			<TargetFilename condition="contains">.exe</TargetFilename>
+			<TargetFilename condition="contains">.dll</TargetFilename>
+			
+			<!-- Track deletions of common everyday user files -->
+			<TargetFilename condition="contains">.txt</TargetFilename>
+			<TargetFilename condition="contains">.doc</TargetFilename>
+			<TargetFilename condition="contains">.docx</TargetFilename>
+			<TargetFilename condition="contains">.xls</TargetFilename>
+			<TargetFilename condition="contains">.xlsx</TargetFilename>
+			<TargetFilename condition="contains">.ppt</TargetFilename>
+			<TargetFilename condition="contains">.pptx</TargetFilename>
+			<TargetFilename condition="contains">.pdf</TargetFilename>
+			<TargetFilename condition="contains">.rtf</TargetFilename>
+			
+			<!-- Track deletions from security-relevant directories -->
+			<TargetFilename condition="contains">Windows\System32</TargetFilename>
+			<TargetFilename condition="contains">Windows\SysWOW64</TargetFilename>
+			<TargetFilename condition="contains">Program Files</TargetFilename>
+			<TargetFilename condition="contains">ProgramData</TargetFilename>
+			
+			<!-- Track by process image -->
+			<Image condition="contains">powershell.exe</Image>
+			<Image condition="contains">cmd.exe</Image>
+			<Image condition="contains">wscript.exe</Image>
+			<Image condition="contains">cscript.exe</Image>
+		</FileDelete>
+
+		<FileDelete onmatch="exclude">
+			<!-- Exclude common high-volume paths to reduce noise -->
+			<TargetFilename condition="begin with">C:\Windows\SoftwareDistribution</TargetFilename>
+			<TargetFilename condition="begin with">C:\Windows\Temp</TargetFilename>
+			<TargetFilename condition="begin with">C:\$Recycle.Bin</TargetFilename>
+			<TargetFilename condition="contains">AppData\Local\Temp</TargetFilename>
+			<TargetFilename condition="contains">AppData\Local\Microsoft\Windows\INetCache</TargetFilename>
+			<TargetFilename condition="contains">AppData\Local\Microsoft\Windows\Temporary Internet Files</TargetFilename>
+		</FileDelete>
+	</RuleGroup>
 		
 	<!--SYSMON EVENT ID 27 : FILE BLOCK [FileBlockExecutable]-->
 		<!--EVENT 27: "File Block Executable"-->
