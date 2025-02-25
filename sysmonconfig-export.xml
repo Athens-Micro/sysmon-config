@@ -234,6 +234,33 @@
 			<Image condition="begin with">C:\Program Files\Microsoft Monitoring Agent\</Image>
 			<ParentImage condition="is">C:\Program Files\Microsoft Monitoring Agent\MonitoringHost.exe</ParentImage>
 			<ParentImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</ParentImage>
+			<!-- SECTION: NinjaOne -->
+			<Image condition="begin with">C:\ProgramData\NinjaRMMAgent\</Image>
+			<ParentImage condition="is">C:\ProgramData\NinjaRMMAgent\ninjarmm-cli.exe</ParentImage>
+			<Image condition="is">C:\Program Files\NinjaRemote\ncstreamer.exe</Image>
+			<Image condition="is">C:\Program Files\njbar\njbar.exe</Image>
+			<Rule groupRelation="and">
+			    <Image condition="begin with">C:\Program Files (x86)\</Image>
+			    <Image condition="contains any">NinjaRMMAgent.exe,NinjaRMMAgentPatcher.exe</Image>
+			</Rule>
+			<!-- SECTION: Huntress Agent -->
+			<!-- Main Agent Executables -->
+			<Image condition="is">C:\Program Files\Huntress\HuntressAgent.exe</Image>
+			<Image condition="is">C:\Program Files\Huntress\HuntressUpdater.exe</Image>
+			<Image condition="is">C:\Program Files\Huntress\hUpdate.exe</Image>
+			<Image condition="is">C:\Program Files\Huntress\uninstall.exe</Image>			
+			<!-- Rio Component -->
+			<Image condition="is">C:\Program Files\Huntress\Rio\Rio.exe</Image>
+			<Image condition="begin with">C:\Program Files\Huntress\Rio\</Image>			
+			<!-- Broader Exclusions -->
+			<Image condition="begin with">C:\Program Files\Huntress\</Image>			
+			<!-- Parent Process Exclusions -->
+			<ParentImage condition="is">C:\Program Files\Huntress\HuntressAgent.exe</ParentImage>
+			<ParentImage condition="is">C:\Program Files\Huntress\HuntressUpdater.exe</ParentImage>
+			<ParentImage condition="is">C:\Program Files\Huntress\Rio\Rio.exe</ParentImage>			
+			<!-- Command Line Exclusions -->
+			<CommandLine condition="contains">C:\Program Files\Huntress\HuntressUpdater.exe</CommandLine>
+			<CommandLine condition="contains">C:\Program Files\Huntress\hUpdate.exe</CommandLine>
 		</ProcessCreate>
 	</RuleGroup>
 
