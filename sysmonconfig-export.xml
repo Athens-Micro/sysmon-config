@@ -1348,9 +1348,9 @@
 			<!-- SECTION: PRTG -->
 			<Image condition="is">C:\Program Files (x86)\PRTG Network Monitor\PRTG Probe.exe</Image>
 			<!-- SECTION: Huntress -->
-			<QueryName condition="endswith">huntress.io</QueryName>
-			<QueryName condition="endswith">huntresscdn.com</QueryName>
-			<QueryName condition="endswith">bugsnag.com</QueryName>
+			<QueryName condition="end with">huntress.io</QueryName>
+			<QueryName condition="end with">huntresscdn.com</QueryName>
+			<QueryName condition="end with">bugsnag.com</QueryName>
 			<QueryName condition="is">huntress-installers.s3.amazonaws.com</QueryName>
 			<QueryName condition="is">huntress-updates.s3.amazonaws.com</QueryName>
 			<QueryName condition="is">huntress-uploads.s3.us-west-2.amazonaws.com</QueryName>
@@ -1359,14 +1359,14 @@
 			<QueryName condition="is">huntress-survey-results.s3.amazonaws.com</QueryName>
 			<QueryName condition="is">huntress-log-uploads.s3.amazonaws.com</QueryName>
 			<!-- SECTION: NinjaRMM -->
-			<QueryName condition="endswith">ninjarmm.com</QueryName>
-			<QueryName condition="endswith">ninjarmm.net</QueryName>
-			<QueryName condition="endswith">rmmservice.com</QueryName>
+			<QueryName condition="end with">ninjarmm.com</QueryName>
+			<QueryName condition="end with">ninjarmm.net</QueryName>
+			<QueryName condition="end with">rmmservice.com</QueryName>
 			<QueryName condition="is">ninjauploads.s3.amazonaws.com</QueryName>
 			<QueryName condition="is">resources.ninjarmm.com</QueryName>
 			<QueryName condition="is">ninjabuilds.s3.amazonaws.com</QueryName>
 			<QueryName condition="is">agent-app.ninjarmm.com</QueryName>
-			<QueryName condition="endswith">ingest.sentry.io</QueryName>
+			<QueryName condition="end with">ingest.sentry.io</QueryName>
 			<QueryName condition="is">ninja-attachments.s3.us-west-2.amazonaws.com</QueryName>
 		</DnsQuery>
 	</RuleGroup>
