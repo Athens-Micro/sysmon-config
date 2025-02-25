@@ -265,7 +265,7 @@
 				<CommandLine condition="contains">C:\Program Files\Huntress\hUpdate.exe</CommandLine>
 				<!-- SECTION: Labtech -->
 				<Image condition="is">C:\Windows\LTSvc\LTSvcMon.exe</Image>
-				<image condition="is">C:\Windows\LTSvc\LTSVC.exe</Image>
+				<Image condition="is">C:\Windows\LTSvc\LTSVC.exe</Image>
 		</ProcessCreate>
 	</RuleGroup>
 
