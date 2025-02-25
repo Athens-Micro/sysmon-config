@@ -234,8 +234,6 @@
 			<Image condition="begin with">C:\Program Files\Microsoft Monitoring Agent\</Image>
 			<ParentImage condition="is">C:\Program Files\Microsoft Monitoring Agent\MonitoringHost.exe</ParentImage>
 			<ParentImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</ParentImage>
-			<!-- SECTION: PowerAutomate-->
-			<Image condition="is">C:\Program Files (x86)\Power Automate Desktop\PAD.BrowserNativeMessageHost.exe</Image>
 			<!-- SECTION: NinjaOne -->
 			<Image condition="begin with">C:\ProgramData\NinjaRMMAgent\</Image>
 			<ParentImage condition="is">C:\ProgramData\NinjaRMMAgent\ninjarmm-cli.exe</ParentImage>
@@ -1452,9 +1450,7 @@
 			<TargetFilename condition="contains">.bat</TargetFilename>
 			<TargetFilename condition="contains">.cmd</TargetFilename>
 			<TargetFilename condition="contains">.vbs</TargetFilename>
-			<TargetFilename condition="contains">.hta</TargetFilename>
 			<TargetFilename condition="contains">.exe</TargetFilename>
-			<TargetFilename condition="contains">.dll</TargetFilename>
 			
 			<!-- Track deletions of common everyday user files -->
 			<TargetFilename condition="contains">.txt</TargetFilename>
@@ -1490,6 +1486,8 @@
 			<TargetFilename condition="contains">AppData\Local\Microsoft\Windows\Temporary Internet Files</TargetFilename>
 			<TargetFilename condition="begin with">C:\Windows\SystemTemp\</TargetFilename>
 			<TargetFilename condition="begin with">C:\Windows\Prefetch\</TargetFilename>
+			<TargetFilename condition="begin with">C:\Windows\System32\CatRoot\</TargetFilename>
+			<TargetFilename condition="begin with">C:\Windows\winsxs\</TargetFilename>
 		</FileDeleteDetected>
 	</RuleGroup>
 		
